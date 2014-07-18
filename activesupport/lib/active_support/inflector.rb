@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'singleton'
-require 'iconv'
+# iconv is deprecated
+# require 'iconv'
 require 'kconv'
 
 module ActiveSupport
@@ -277,7 +278,9 @@ module ActiveSupport
 
     # Replaces accented characters with their ascii equivalents.
     def transliterate(string)
-      Iconv.iconv('ascii//ignore//translit', 'utf-8', string).to_s
+      # iconv is deprecated
+      # Iconv.iconv('ascii//ignore//translit', 'utf-8', string).to_s
+      String.encode('ascii//ignore//translit', 'utf-8', string).to_s
     end
 
     if RUBY_VERSION >= '1.9'
